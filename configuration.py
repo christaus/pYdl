@@ -21,6 +21,8 @@
 # THE SOFTWARE.
 
 import os
+from pathlib import Path
+import configparser
 
 chemin_script = os.path.abspath(__file__)
 repertoire_script = chemin_script[: next(i for i in reversed(range(len(chemin_script))) if chemin_script[i] == os.path.sep) + 1]
@@ -39,3 +41,19 @@ path_videos = repertoire_script + f"data{os.sep}"
 
 h_dep = 0
 h_fin = 23
+
+class configuration():
+    def __init__(self):
+        # Chechink if a configuration file already exist
+        fname = Path(f"{repertoire_script}data{os.sep}setup.ini")
+        print(f"{repertoire_script}data{os.sep}setup.ini")
+        if fname.is_file():
+            # if already exist, try to read it
+            config = configparser.ConfigParser()
+            config.read(f"{repertoire_script}data{os.sep}setup.ini")
+            
+        else:
+            # if no setup file is found, then, create it with default values
+            pass
+
+app = configuration()
