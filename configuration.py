@@ -60,7 +60,15 @@ interval = 60
 
 ; [path]
 ; mp3 = /home/error
-; videos = /home/error""")
+; videos = /home/error
+
+; [audio-filters]
+; Any software can be used here, relative of full path.
+; mp3-gain = mp3-gain $file
+
+; [video-filters]
+; Any software can be used here, relative of full path.
+; none = none $file""")
             configfile.close()
             
         config = configparser.ConfigParser()

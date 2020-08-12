@@ -23,6 +23,7 @@
 from tkinter import *
 import gettext
 from configuration import *
+from image_set import image_set
 
 fr = gettext.translation("base", localedir=repertoire_script + "locales", languages=[langue_appli], fallback=False)
 fr.install()
@@ -42,7 +43,23 @@ class Setup_GUI(Toplevel):
         """ Interface itself
         """
         self.title(_("Configuration pYdl"))
-        self.geometry("400x200")
+        self.iconphoto(False, PhotoImage(file=f"{repertoire_script}images{os.sep}icone.png"))
+        
+        self.panel_001 = Label(self, bg=couleur_fond)
+        self.panel_002 = Label(self, bg=couleur_fond)
+        self.panel_003 = Label(self, bg=couleur_fond)
+        
+        self.entete = image_set(self.panel_001, f"images{os.sep}logo-small")
+        
+        """ Implantation des composants
+        """
+        self.panel_001.pack(expand=True, fill=BOTH)
+        self.panel_002.pack(expand=True, fill=BOTH)
+        self.panel_003.pack(expand=True, fill=BOTH)
+        
+    def apply_setup(self):
+        """ Records setup on hard drive
+        """
 
     def run(self):
         self.interface()
