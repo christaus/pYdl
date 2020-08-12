@@ -82,13 +82,16 @@ to = 23
         
 
 app = configuration()
+
 couleur_fond = app.couleur_fond
 couleur_texte = app.couleur_texte
 couleur_fond_saisie = app.couleur_fond_saisie
 couleur_texte_saisie = app.couleur_texte_saisie
 couleur_activebackground = couleur_texte_saisie
 couleur_activeforeground = couleur_fond_saisie
+
 debug = True
+
 langue_appli = app.langue_appli
 
 path_youtubedl = app.youtubedl_path
