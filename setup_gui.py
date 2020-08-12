@@ -41,7 +41,7 @@ class Setup_GUI(Toplevel):
     def interface(self):
         """ Interface itself
         """
-        self.title(_("Titre ici"))
+        self.title(_("Configuration pYdl"))
         self.geometry("400x200")
 
     def run(self):
