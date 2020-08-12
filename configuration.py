@@ -55,6 +55,8 @@ path = youtube-dl
 [active]
 from = 0
 to = 23
+; interval in seconds
+interval = 60
 
 ; [path]
 ; mp3 = /home/error
@@ -71,6 +73,7 @@ to = 23
         self.youtubedl_path = config['youtube-dl']['path']
         self.activefrom = config['active']['from']
         self.activeto = config['active']['to']
+        self.check_interval = config['active']['interval']
         try:
             self.mp3 = config['path']['mp3']
         except:
@@ -100,3 +103,5 @@ path_videos = app.videos
 
 h_dep = app.activefrom
 h_fin = app.activeto
+
+check_interval = app.check_interval
