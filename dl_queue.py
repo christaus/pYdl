@@ -46,7 +46,7 @@ class dl_queue(Toplevel):
         Toplevel.__init__(self)
         self.debug = debug
         self.Tdl_list = []
-        self.interval = int(check_interval) * 1000
+        self.interval = check_interval * 1000
 
     def interface(self):
         """ Interface de la fenêtre

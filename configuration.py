@@ -101,7 +101,7 @@ path_youtubedl = app.youtubedl_path
 path_mp3 = app.mp3
 path_videos = app.videos
 
-h_dep = app.activefrom
-h_fin = app.activeto
+h_dep = int(app.activefrom)
+h_fin = int(app.activeto)
 
-check_interval = app.check_interval
+check_interval = int(app.check_interval)
