@@ -141,6 +141,8 @@ class Setup_GUI(Toplevel):
             
         with open(f"{repertoire_script}data{os.sep}setup.ini", 'w') as configfile:    
             self.configuration.write(configfile)
+            
+        self.destroy()
 
     def run(self):
         self.interface()

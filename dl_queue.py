@@ -31,6 +31,7 @@ from image_set import image_set
 from class_dl import dl
 import time
 from threading import Thread
+from setup_gui import Setup_GUI
 
 fr = gettext.translation("base", localedir=repertoire_script + "locales", languages=[langue_appli], fallback=False)
 fr.install()
@@ -80,6 +81,11 @@ class dl_queue(Toplevel):
         """
 
         self.panel_002.bind("<Configure>", self.onFrameConfigure)
+        self.top_time.btn.bind("<Button-1>", self.do_Setup)
+        
+    def do_Setup(self, event):
+        app = Setup_GUI()
+        app.run()
 
     def onFrameConfigure(self, event):
         """Reset the scroll region to encompass the inner frame"""

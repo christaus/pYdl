@@ -8,6 +8,9 @@ A frontend to youtube-dl.
 
 Perfect to backup videos or music you forgot on your old youtube account.  
 
+## Setup
+
+Just click on the clock to setup commun options.
 
 ## data/setup.ini
 
