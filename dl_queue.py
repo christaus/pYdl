@@ -65,7 +65,7 @@ class dl_queue(Toplevel):
 
         self.top_time = image_set(self.panel_001, f"images{os.sep}horloge")
         self.time_message = Label(
-            self.panel_001, text=_("Téléchargement autorisé de" + "\n{}" + "h à "+ "{}"+ "h".format(h_dep, h_fin)), bg=couleur_fond, fg=couleur_texte
+            self.panel_001, text=_("Téléchargement autorisé de\n{} h à {} h").format(h_dep, h_fin), bg=couleur_fond, fg=couleur_texte
         )
 
         """ Implantation des composants
