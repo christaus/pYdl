@@ -7,3 +7,12 @@
 A frontend to youtube-dl.
 
 Perfect to backup videos or music you forgot on your old youtube account.  
+
+## Setup
+
+Just click on the clock to setup commun options.
+
+## data/setup.ini
+
+This file is not provided but generated at the first lanch of pYdl.
+It include many intaresting things, please refer to the default setup.ini for further information.

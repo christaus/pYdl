@@ -55,10 +55,20 @@ path = youtube-dl
 [active]
 from = 0
 to = 23
+; interval in seconds
+interval = 60
 
 ; [path]
 ; mp3 = /home/error
-; videos = /home/error""")
+; videos = /home/error
+
+; [audio-filters]
+; Any software can be used here, relative of full path.
+; mp3-gain = mp3-gain $file
+
+; [video-filters]
+; Any software can be used here, relative of full path.
+; none = none $file""")
             configfile.close()
             
         config = configparser.ConfigParser()
@@ -71,6 +81,7 @@ to = 23
         self.youtubedl_path = config['youtube-dl']['path']
         self.activefrom = config['active']['from']
         self.activeto = config['active']['to']
+        self.check_interval = config['active']['interval']
         try:
             self.mp3 = config['path']['mp3']
         except:
@@ -82,18 +93,23 @@ to = 23
         
 
 app = configuration()
+
 couleur_fond = app.couleur_fond
 couleur_texte = app.couleur_texte
 couleur_fond_saisie = app.couleur_fond_saisie
 couleur_texte_saisie = app.couleur_texte_saisie
 couleur_activebackground = couleur_texte_saisie
 couleur_activeforeground = couleur_fond_saisie
+
 debug = True
+
 langue_appli = app.langue_appli
 
 path_youtubedl = app.youtubedl_path
 path_mp3 = app.mp3
 path_videos = app.videos
 
-h_dep = app.activefrom
-h_fin = app.activeto
+h_dep = int(app.activefrom)
+h_fin = int(app.activeto)
+
+check_interval = int(app.check_interval)
