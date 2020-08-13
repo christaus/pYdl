@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pYdl\n"
-"POT-Creation-Date: 2020-08-13 16:23+0200\n"
-"PO-Revision-Date: 2020-08-13 16:25+0200\n"
+"POT-Creation-Date: 2020-08-13 16:34+0200\n"
+"PO-Revision-Date: 2020-08-13 16:34+0200\n"
 "Last-Translator: \n"
 "Language-Team: _\n"
 "Language: en\n"
@@ -22,15 +22,15 @@ msgstr ""
 
 #: dl_queue.py:55
 msgid "pYdl - Serveur"
-msgstr "pYdl - Serveur"
+msgstr "pYdl - Server"
 
 #: dl_queue.py:68
 msgid ""
 "Téléchargement autorisé de\n"
 "{}h à {}h"
 msgstr ""
-"Téléchargement autorisé de\n"
-"{}h à {}h"
+"Download allowed from\n"
+"{}h to {}h"
 
 #: main.py:55
 msgid "pYdl"
@@ -42,63 +42,63 @@ msgstr "URL"
 
 #: main.py:72
 msgid "Capturer Audio"
-msgstr "Capturer Audio"
+msgstr "Get Audio"
 
 #: main.py:81
 msgid "Capturer Vidéo"
-msgstr "Capturer Vidéo"
+msgstr "Get Video"
 
 #: main.py:90
 msgid "C'est parti !"
-msgstr "C'est parti !"
+msgstr "Let's go !"
 
 #: setup_gui.py:47
 msgid "Configuration pYdl"
-msgstr "Configuration pYdl"
+msgstr "pYdl Setup"
 
 #: setup_gui.py:56
 msgid "Langue"
-msgstr "Langue"
+msgstr "Language"
 
 #: setup_gui.py:57
 msgid "Couleur de fond texte"
-msgstr "Couleur de fond texte"
+msgstr "Background text color"
 
 #: setup_gui.py:58
 msgid "Couleur du texte"
-msgstr "Couleur du texte"
+msgstr "Text color"
 
 #: setup_gui.py:59
 msgid "Couleur de fond saisie"
-msgstr "Couleur de fond saisie"
+msgstr "Background entry color"
 
 #: setup_gui.py:60
 msgid "Couleur du texte saisie"
-msgstr "Couleur du texte saisie"
+msgstr "Entry text color"
 
 #: setup_gui.py:61
 msgid "Commande youtube-dl"
-msgstr "Commande youtube-dl"
+msgstr "youtube-dl command"
 
 #: setup_gui.py:62
 msgid "Départ téléchargements (heure)"
-msgstr "Départ téléchargements (heure)"
+msgstr "Download starting time (hour)"
 
 #: setup_gui.py:63
 msgid "Fin des téléchargements (heure)"
-msgstr "Fin des téléchargements (heure)"
+msgstr "Download ending time (hour)"
 
 #: setup_gui.py:64
 msgid "Dossier destination des mp3"
-msgstr "Dossier destination des mp3"
+msgstr "mp3 target folder"
 
 #: setup_gui.py:65
 msgid "Dossier destination des vidéos"
-msgstr "Dossier destination des vidéos"
+msgstr "Videos target folder"
 
 #: setup_gui.py:93
 msgid "Enregistrer"
-msgstr "Enregistrer"
+msgstr "Save"
 
 #~ msgid "Vous avez {} traductions."
 #~ msgstr "You have {}translations."
