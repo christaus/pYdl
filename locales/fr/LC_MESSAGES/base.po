@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pYdl\n"
-"POT-Creation-Date: 2020-08-13 16:23+0200\n"
-"PO-Revision-Date: 2020-08-13 16:25+0200\n"
+"POT-Creation-Date: 2020-08-13 16:58+0200\n"
+"PO-Revision-Date: 2020-08-13 16:58+0200\n"
 "Last-Translator: \n"
 "Language-Team: _\n"
 "Language: en\n"
@@ -27,10 +27,10 @@ msgstr "pYdl - Serveur"
 #: dl_queue.py:68
 msgid ""
 "Téléchargement autorisé de\n"
-"{}h à {}h"
+"{} h à {} h"
 msgstr ""
 "Téléchargement autorisé de\n"
-"{}h à {}h"
+"{} h à {} h"
 
 #: main.py:55
 msgid "pYdl"
