@@ -71,10 +71,11 @@ class Setup_GUI(Toplevel):
             
             if (curseur / 2) == round(curseur / 2):
                 temporaire.append(Label(self.panel_002, text=ligne[0], bg=couleur_fond, fg=couleur_texte))
+                temporaire.append(Entry(self.panel_002, bg=couleur_fond_saisie, fg=couleur_texte_saisie))
             else:
                 temporaire.append(Label(self.panel_002, text=ligne[0], bg=couleur_texte, fg=couleur_fond))
+                temporaire.append(Entry(self.panel_002, bg=couleur_texte_saisie, fg=couleur_fond_saisie))
             
-            temporaire.append(Entry(self.panel_002, bg=couleur_fond_saisie, fg=couleur_texte_saisie))
             self.composants.append(temporaire)
             curseur += 1
         
