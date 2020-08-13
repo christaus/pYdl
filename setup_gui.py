@@ -62,23 +62,32 @@ class Setup_GUI(Toplevel):
                       [_('Dossier destination des mp3'),'path','mp3','char'],
                       [_('Dossier destination des vidéos'),'path','videos','char'],
                       ]
+        
         self.composants = []
         
+        curseur = 0
         for ligne in parametres:
             temporaire = []
-            temporaire.append(Label(self.panel_002, text=ligne[0], bg=couleur_fond, fg=couleur_texte))
+            
+            if (curseur / 2) == round(curseur / 2):
+                temporaire.append(Label(self.panel_002, text=ligne[0], bg=couleur_fond, fg=couleur_texte))
+            else:
+                temporaire.append(Label(self.panel_002, text=ligne[0], bg=couleur_texte, fg=couleur_fond))
+            
             temporaire.append(Entry(self.panel_002, bg=couleur_fond_saisie, fg=couleur_texte_saisie))
             self.composants.append(temporaire)
+            curseur += 1
         
         """ Implantation des composants
         """
         self.panel_001.pack(expand=True, fill=BOTH)
         self.panel_002.pack(expand=True, fill=BOTH)
         self.panel_003.pack(expand=True, fill=BOTH)
+        
         curseur = 0
         for element in self.composants:
-            element[0].grid(row = curseur, column = 0)
-            element[1].grid(row = curseur, column = 1)
+            element[0].grid(row = curseur, column = 0, sticky = EW)
+            element[1].grid(row = curseur, column = 1, sticky = EW)
             curseur +=1
         
     def apply_setup(self):
