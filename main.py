@@ -43,6 +43,7 @@ class pYdl(Tk):
     def __init__(self, debug=False):
         Tk.__init__(self)
         self.debug = debug
+        self.is_playlist_value = IntVar()
         self.is_audio_value = IntVar()
         self.is_video_value = IntVar()
 
@@ -62,6 +63,15 @@ class pYdl(Tk):
         self.txt_url = Label(self.panel_002, text=_("URL"), bg=couleur_fond, fg=couleur_texte)
         self.entry_url = Entry(self.panel_002, bg=couleur_fond_saisie, fg=couleur_texte_saisie)
 
+        self.is_playlist = Checkbutton(
+            self.panel_002,
+            bg=couleur_fond_saisie,
+            fg=couleur_texte_saisie,
+            activebackground=couleur_texte_saisie,
+            activeforeground=couleur_fond_saisie,
+            variable=self.is_playlist_value,
+            text=_("Liste de Lecture"),
+        )
         self.is_audio = Checkbutton(
             self.panel_002,
             bg=couleur_fond_saisie,
@@ -100,12 +110,14 @@ class pYdl(Tk):
         self.panel_003.pack(expand=True, fill=BOTH)
         self.txt_url.pack(expand=True, fill=BOTH)
         self.entry_url.pack(expand=True, fill=BOTH)
+        self.is_playlist.pack(expand=True, fill=BOTH, side=LEFT)
         self.is_audio.pack(expand=True, fill=BOTH, side=LEFT)
         self.is_video.pack(expand=True, fill=BOTH)
         self.btn_001.pack(expand=True, fill=BOTH)
 
         """ Initialise widgets values
         """
+        self.is_playlist_value.set("0")
         self.is_audio_value.set("1")
         self.is_video_value.set("1")
 
@@ -117,10 +129,13 @@ class pYdl(Tk):
     def letsgo(self):
         self.entry_url.config(state=DISABLED)
         self.btn_001.config(state=DISABLED)
+        self.is_playlist.config(state=DISABLED)
         self.is_audio.config(state=DISABLED)
         self.is_video.config(state=DISABLED)
 
         a_charger = Tdl()
+        if self.is_playlist_value.get() == 1:
+            a_charger.is_playlist = True
         if self.is_audio_value.get() == 1:
             a_charger.is_audio = True
         if self.is_video_value.get() == 1:
@@ -132,6 +147,7 @@ class pYdl(Tk):
 
         self.entry_url.config(state=NORMAL)
         self.btn_001.config(state=NORMAL)
+        self.is_playlist.config(state=NORMAL)
         self.is_audio.config(state=NORMAL)
         self.is_video.config(state=NORMAL)
         self.entry_url.delete("0", "end")
