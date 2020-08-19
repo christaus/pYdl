@@ -22,7 +22,8 @@
 
 
 class Tdl:
-    def __init__(self, is_video=False, is_audio=False, date_cre=None, date_exp=None, URL=None):
+    def __init__(self, is_playlist=False, is_video=False, is_audio=False, date_cre=None, date_exp=None, URL=None):
+        self.is_playlist = is_playlist
         self.is_video = is_video
         self.is_audio = is_audio
         self.date_cre = date_cre  # Creation date

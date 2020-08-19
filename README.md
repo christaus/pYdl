@@ -8,6 +8,18 @@ A frontend to youtube-dl.
 
 Perfect to backup videos or music you forgot on your old youtube account.  
 
+## Audio
+
+Download the audio stream.
+
+## Video
+
+Download the video stream.
+
+## Playlist
+
+Download the playlist 1 - Song name.mp3 you can download audio and / or video stream.
+
 ## Setup
 
 Just click on the clock to setup commun options.
