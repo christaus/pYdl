@@ -155,15 +155,23 @@ class letsdl(Thread):
         # MP3 Version
         if self.download.is_audio:
             try:
-                subprocess.call(
+                if self.download.is_playlist:
+                    subprocess.call(
+                    f"{path_youtubedl} -q -x --audio-format mp3 {self.download.URL} -o '{path_mp3}%(playlist_index)s - %(title)s.%(ext)s'", shell=True
+                    )
+                else:
+                    subprocess.call(
                     f"{path_youtubedl} -q -x --audio-format mp3 {self.download.URL} -o '{path_mp3}%(title)s.%(ext)s'", shell=True
-                )
+                    )
             except:
                 pass
         # Video Version
         if self.download.is_video:
             try:
-                subprocess.call(f"{path_youtubedl} -q {self.download.URL} -o '{path_videos}%(title)s.%(ext)s'", shell=True)
+                if self.download.is_playlist:
+                    subprocess.call(f"{path_youtubedl} -q {self.download.URL} -o '{path_videos}%(playlist_index)s - %(title)s.%(ext)s'", shell=True)
+                else:
+                    subprocess.call(f"{path_youtubedl} -q {self.download.URL} -o '{path_videos}%(title)s.%(ext)s'", shell=True)
             except:
                 pass
 
