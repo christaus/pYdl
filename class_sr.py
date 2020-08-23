@@ -23,17 +23,21 @@
 from configuration import *
 import os
 import codecs
+from pathlib import Path
+import configparser
 
-class SR():
-    ''' Save and Restaure class
+
+class SR:
+    """ Save and Restaure class
     Permits to save the download queue on the hard drive and to restaure it.
     Usage:
     SR.save(dllist)
     SR.restaure(dllist)
-    '''
+    """
+
     def __init__(self, local_queue):
         self.dllist = local_queue
-        
+
     def save(self):
         # Save queue
         fname = Path(f"{repertoire_script}data{os.sep}dl.ini")
@@ -46,8 +50,8 @@ class SR():
 
         # We always erase the old queue
         configfile = codecs.open(f"{repertoire_script}data{os.sep}dl.ini", "w", "utf-8")
-        
+
         configfile.close()
-    
+
     def run(self):
-        print('Running!')
+        print("Running!")
