@@ -6,7 +6,11 @@
 
 A frontend to youtube-dl.
 
-Perfect to backup videos or music you forgot on your old youtube account.  
+Perfect to backup videos or music you forgot on your old youtube account. 
+
+Any download added to the list is avaible up to 24 hours. After the download is considered as outdated and is removed from the list.
+
+The download list is recorded, you can close and open the application later, your download list will be preserved (according to the 24 hours limit). 
 
 ## Audio
 
