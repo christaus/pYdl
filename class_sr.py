@@ -68,11 +68,14 @@ class SR:
         config = configparser.ConfigParser()
 
         for el in self.dllist:
+            # Replacing unwanted characters in date by 0
             cle = str(el.date_cre).replace(" ", "0")
             cle = cle.replace(":", "0")
             cle = cle.replace("-", "0")
             cle = cle.replace(".", "0")
+            # Create the root key
             config[f"record{cle}"] = {}
+            # Create record's subkeys
             config[f"record{cle}"]["URL"] = el.URL
             config[f"record{cle}"]["date_cre"] = str(el.date_cre)
             config[f"record{cle}"]["date_exp"] = str(el.date_exp)
