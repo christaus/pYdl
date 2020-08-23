@@ -21,6 +21,8 @@
 # THE SOFTWARE.
 
 from configuration import *
+import os
+import codecs
 
 class SR():
     ''' Save and Restaure class
@@ -31,6 +33,20 @@ class SR():
     '''
     def __init__(self, local_queue):
         self.dllist = local_queue
+        
+    def save(self):
+        # Save queue
+        fname = Path(f"{repertoire_script}data{os.sep}dl.ini")
+        if not fname.is_file():
+            # if no setup file is found, then, create it with default values
+            try:
+                os.mkdir(f"{repertoire_script}data")
+            except:
+                pass
+            
+        configfile = codecs.open(f"{repertoire_script}data{os.sep}setup.ini", "w", "utf-8")
+        
+        configfile.close()
     
     def run(self):
         print('Running!')
