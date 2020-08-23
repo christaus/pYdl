@@ -33,6 +33,8 @@ import time
 from threading import Thread
 from setup_gui import Setup_GUI
 
+from class_sr import SR
+
 fr = gettext.translation("base", localedir=repertoire_script + "locales", languages=[langue_appli], fallback=False)
 fr.install()
 _ = fr.gettext
@@ -108,6 +110,9 @@ class dl_queue(Toplevel):
             selection.run()
             selection.grid(row=cursor, column=0)
             cursor += 1
+            
+        sauvegarde = SR(local_queue = self.Tdl_list)
+        SR.save(sauvegarde)
 
     def check_queue(self):
         heure = int(datetime.datetime.now().strftime("%H"))
