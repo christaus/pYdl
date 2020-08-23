@@ -15,6 +15,7 @@ clean:
 	rm -rvf __pycache__
 	rm -rvf venv
 	rm -rvf doc/build
+	rm -rvf data
 
 pycache:
 	@echo "Removing __pycache__"

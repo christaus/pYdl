@@ -28,7 +28,8 @@ import codecs
 chemin_script = os.path.abspath(__file__)
 repertoire_script = chemin_script[: next(i for i in reversed(range(len(chemin_script))) if chemin_script[i] == os.path.sep) + 1]
 
-class configuration():
+
+class configuration:
     def __init__(self):
         # Chechink if a configuration file already exist
         fname = Path(f"{repertoire_script}data{os.sep}setup.ini")
@@ -38,9 +39,10 @@ class configuration():
                 os.mkdir(f"{repertoire_script}data")
             except:
                 pass
-            
+
             configfile = codecs.open(f"{repertoire_script}data{os.sep}setup.ini", "w", "utf-8")
-            configfile.write("""[language]
+            configfile.write(
+                """[language]
 lang = fr
 
 [interface]
@@ -68,29 +70,30 @@ interval = 60
 
 ; [video-filters]
 ; Any software can be used here, relative of full path.
-; none = none $file""")
+; none = none $file"""
+            )
             configfile.close()
-            
+
         config = configparser.ConfigParser()
         config.read(f"{repertoire_script}data{os.sep}setup.ini")
-        self.langue_appli = config['language']['lang']
-        self.couleur_fond = config['interface']['couleur_fond']
-        self.couleur_texte = config['interface']['couleur_texte']
-        self.couleur_fond_saisie = config['interface']['couleur_fond_saisie']
-        self.couleur_texte_saisie = config['interface']['couleur_texte_saisie']
-        self.youtubedl_path = config['youtube-dl']['path']
-        self.activefrom = config['active']['from']
-        self.activeto = config['active']['to']
-        self.check_interval = config['active']['interval']
+        self.langue_appli = config["language"]["lang"]
+        self.couleur_fond = config["interface"]["couleur_fond"]
+        self.couleur_texte = config["interface"]["couleur_texte"]
+        self.couleur_fond_saisie = config["interface"]["couleur_fond_saisie"]
+        self.couleur_texte_saisie = config["interface"]["couleur_texte_saisie"]
+        self.youtubedl_path = config["youtube-dl"]["path"]
+        self.activefrom = config["active"]["from"]
+        self.activeto = config["active"]["to"]
+        self.check_interval = config["active"]["interval"]
         try:
-            self.mp3 = config['path']['mp3']
+            self.mp3 = config["path"]["mp3"]
         except:
             self.mp3 = repertoire_script + f"data{os.sep}"
         try:
-            self.videos = config['path']['videos']
+            self.videos = config["path"]["videos"]
         except:
             self.videos = repertoire_script + f"data{os.sep}"
-        
+
 
 app = configuration()
 

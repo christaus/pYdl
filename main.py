@@ -52,6 +52,7 @@ class pYdl(Tk):
         """
         self.dl_queue = dl_queue()
         self.dl_queue.run()
+        self.dl_queue.refresh_list()
 
         self.title(_("pYdl"))
         self.iconphoto(False, PhotoImage(file=f"{repertoire_script}images{os.sep}icone.png"))

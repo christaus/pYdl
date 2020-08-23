@@ -33,6 +33,8 @@ import time
 from threading import Thread
 from setup_gui import Setup_GUI
 
+from class_sr import SR
+
 fr = gettext.translation("base", localedir=repertoire_script + "locales", languages=[langue_appli], fallback=False)
 fr.install()
 _ = fr.gettext
@@ -97,9 +99,14 @@ class dl_queue(Toplevel):
 
     def add_tdl(self, download):
         self.Tdl_list.append(download)
+        sauvegarde = SR(local_queue = self.Tdl_list)
+        self.Tdl_list = sauvegarde.save()
         self.refresh_list()
 
     def refresh_list(self):
+        sauvegarde = SR(local_queue = self.Tdl_list)
+        self.Tdl_list = sauvegarde.restaure()
+        
         for enfant in self.frame.winfo_children():
             enfant.destroy()
         cursor = 0
@@ -108,6 +115,8 @@ class dl_queue(Toplevel):
             selection.run()
             selection.grid(row=cursor, column=0)
             cursor += 1
+            
+        sauvegarde.save()
 
     def check_queue(self):
         heure = int(datetime.datetime.now().strftime("%H"))
@@ -127,12 +136,11 @@ class dl_queue(Toplevel):
                     download.is_active = True
                     self.refresh_list()
                     self.update()
+                    #thread_001 = letsdl(download)
                     thread_001 = letsdl(download)
                     thread_001.start()
                     thread_001.join()
                     self.Tdl_list.remove(download)
-
-        self.after(self.interval, self.check_queue)
 
 
 class letsdl_fake(Thread):
