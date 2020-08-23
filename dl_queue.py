@@ -99,9 +99,14 @@ class dl_queue(Toplevel):
 
     def add_tdl(self, download):
         self.Tdl_list.append(download)
+        sauvegarde = SR(local_queue = self.Tdl_list)
+        self.Tdl_list = sauvegarde.save()
         self.refresh_list()
 
     def refresh_list(self):
+        sauvegarde = SR(local_queue = self.Tdl_list)
+        self.Tdl_list = sauvegarde.restaure()
+        
         for enfant in self.frame.winfo_children():
             enfant.destroy()
         cursor = 0
@@ -111,8 +116,7 @@ class dl_queue(Toplevel):
             selection.grid(row=cursor, column=0)
             cursor += 1
             
-        sauvegarde = SR(local_queue = self.Tdl_list)
-        SR.save(sauvegarde)
+        sauvegarde.save()
 
     def check_queue(self):
         heure = int(datetime.datetime.now().strftime("%H"))
@@ -137,14 +141,6 @@ class dl_queue(Toplevel):
                     thread_001.start()
                     thread_001.join()
                     self.Tdl_list.remove(download)
-        
-    def record_queue(self):
-        # Enregistre la file d'attente
-        pass
-    
-    def restaure_queue(self):
-        # Restaure la file d'attente
-        pass
 
 
 class letsdl_fake(Thread):

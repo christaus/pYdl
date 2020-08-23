@@ -25,6 +25,7 @@ import os
 import codecs
 from pathlib import Path
 import configparser
+from structures import Tdl
 
 
 class SR:
@@ -73,8 +74,10 @@ class SR:
             cle = cle.replace(":", "0")
             cle = cle.replace("-", "0")
             cle = cle.replace(".", "0")
+            
             # Create the root key
             config[f"record{cle}"] = {}
+            
             # Create record's subkeys
             config[f"record{cle}"]["URL"] = el.URL
             config[f"record{cle}"]["date_cre"] = str(el.date_cre)
@@ -86,6 +89,30 @@ class SR:
 
         config.write(configfile)
         configfile.close()
+        
+    def restaure(self):
+        # Restaure the queue
+        a_retourner = []
+        try:
+            config = configparser.ConfigParser()
+            config.read(f"{repertoire_script}data{os.sep}dl.ini")
+        except:
+            return []
+        
+        for el in config.sections():
+            section = el
+            el_temp = Tdl()
+            el_temp.URL = config[f"{el}"]["url"]
+            el_temp.date_cre = config[f"{el}"]["date_cre"]
+            el_temp.date_exp = config[f"{el}"]["date_exp"]
+            el_temp.is_active = self.char2bool(config[f"{el}"]["is_active"])
+            el_temp.is_audio = self.char2bool(config[f"{el}"]["is_audio"])
+            el_temp.is_playlist = self.char2bool(config[f"{el}"]["is_playlist"])
+            el_temp.is_video = self.char2bool(config[f"{el}"]["is_video"])
+            a_retourner.append(el_temp)
+        
+        self.dllist = a_retourner
+        return a_retourner
 
     def run(self):
         print("Running!")
