@@ -127,12 +127,21 @@ class dl_queue(Toplevel):
                     download.is_active = True
                     self.refresh_list()
                     self.update()
-                    thread_001 = letsdl(download)
+                    #thread_001 = letsdl(download)
+                    thread_001 = letsdl_fake(download)
                     thread_001.start()
                     thread_001.join()
                     self.Tdl_list.remove(download)
 
         self.after(self.interval, self.check_queue)
+        
+    def record_queue(self):
+        # Enregistre la file d'attente
+        pass
+    
+    def restaure_queue(self):
+        # Restaure la file d'attente
+        pass
 
 
 class letsdl_fake(Thread):

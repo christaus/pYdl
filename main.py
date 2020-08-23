@@ -151,6 +151,9 @@ class pYdl(Tk):
         self.is_audio.config(state=NORMAL)
         self.is_video.config(state=NORMAL)
         self.entry_url.delete("0", "end")
+    
+    def close_window(self):
+        print(_("Fenêtre fermée."))
 
     def run(self):
         self.interface()
