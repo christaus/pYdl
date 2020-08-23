@@ -122,7 +122,6 @@ class dl_queue(Toplevel):
                     self.Tdl_list.remove(download)
 
             # Lancement des téléchargements
-            triger = False
             for download in self.Tdl_list:
                 if (download.date_cre - datetime.datetime.now()).total_seconds() < 0:
                     download.is_active = True
@@ -133,11 +132,6 @@ class dl_queue(Toplevel):
                     thread_001.start()
                     thread_001.join()
                     self.Tdl_list.remove(download)
-                    triger = True
-                    os.sleep(self.interval/1000)
-
-        if not triger:
-            self.after(self.interval, self.check_queue)
         
     def record_queue(self):
         # Enregistre la file d'attente
