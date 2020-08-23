@@ -134,7 +134,7 @@ class dl_queue(Toplevel):
                     thread_001.join()
                     self.Tdl_list.remove(download)
                     triger = True
-                    os.sleep(self.interval)
+                    os.sleep(self.interval/1000)
 
         if not triger:
             self.after(self.interval, self.check_queue)
