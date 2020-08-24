@@ -153,7 +153,7 @@ class dl_queue(Toplevel):
                     self.refresh_list()
                     self.update()
                     #thread_001 = letsdl(download)
-                    thread_001 = letsdl_fake(download)
+                    thread_001 = letsdl(download)
                     thread_001.start()
                     thread_001.join()
                     self.Tdl_list.remove(download)
