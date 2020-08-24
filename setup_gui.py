@@ -116,7 +116,6 @@ class Setup_GUI(Toplevel):
         curseur = 0
         for element in self.composants:
             saisie = element[1].get()
-            print(saisie)
             triger = True
             if self.parametres[curseur][3] == 'char':
                 pass
