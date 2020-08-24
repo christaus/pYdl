@@ -60,6 +60,7 @@ class dl_queue(Toplevel):
 
         self.panel_001 = Label(self, bg=couleur_fond)
         self.panel_002 = Canvas(self, background=couleur_fond)
+        self.panel_003 = Canvas(self, background=couleur_fond)
         self.vsb = Scrollbar(self.panel_002, orient="vertical", command=self.panel_002.yview)
         self.panel_002.configure(yscrollcommand=self.vsb.set)
         self.frame = Frame(self.panel_002, background=couleur_fond)
@@ -69,15 +70,24 @@ class dl_queue(Toplevel):
         self.time_message = Label(
             self.panel_001, text=_("Téléchargement autorisé de\n{} h à {} h").format(h_dep, h_fin), bg=couleur_fond, fg=couleur_texte
         )
+        self.btn_clear = Button(self.panel_003,
+                                  text=_("Vider"),
+                                  command = self.apply_clear,
+                                  bg=couleur_fond_saisie,
+                                  fg=couleur_texte_saisie,
+                                  activebackground=couleur_texte_saisie,
+                                  activeforeground=couleur_fond_saisie)
 
         """ Implantation des composants
         """
 
         self.panel_001.pack(expand=True, fill=BOTH)
         self.panel_002.pack(expand=True, fill=BOTH)
+        self.panel_003.pack(expand=True, fill=BOTH)
         self.vsb.pack(side="right", fill="y")
 
         self.time_message.pack(expand=True, fill=BOTH)
+        self.btn_clear.pack(expand = True, fill=BOTH)
 
         """ Binding
         """
@@ -85,6 +95,12 @@ class dl_queue(Toplevel):
         self.panel_002.bind("<Configure>", self.onFrameConfigure)
         self.top_time.btn.bind("<Button-1>", self.do_Setup)
         
+    def apply_clear(self):
+        del self.Tdl_list[:]
+        sauvegarde = SR(local_queue = self.Tdl_list)
+        sauvegarde.save()
+        self.refresh_list()
+    
     def do_Setup(self, event):
         app = Setup_GUI()
         app.run()
@@ -137,7 +153,7 @@ class dl_queue(Toplevel):
                     self.refresh_list()
                     self.update()
                     #thread_001 = letsdl(download)
-                    thread_001 = letsdl(download)
+                    thread_001 = letsdl_fake(download)
                     thread_001.start()
                     thread_001.join()
                     self.Tdl_list.remove(download)

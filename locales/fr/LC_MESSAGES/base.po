@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pYdl\n"
-"POT-Creation-Date: 2020-08-19 08:40+0200\n"
-"PO-Revision-Date: 2020-08-23 12:09+0200\n"
+"POT-Creation-Date: 2020-08-24 11:25+0200\n"
+"PO-Revision-Date: 2020-08-24 11:25+0200\n"
 "Last-Translator: \n"
 "Language-Team: _\n"
 "Language: en\n"
@@ -20,11 +20,11 @@ msgstr ""
 "X-Poedit-SearchPath-5: setup_gui.py\n"
 "X-Poedit-SearchPath-6: structures.py\n"
 
-#: dl_queue.py:55
+#: dl_queue.py:57
 msgid "pYdl - Serveur"
 msgstr "pYdl - Serveur"
 
-#: dl_queue.py:68
+#: dl_queue.py:71
 msgid ""
 "Téléchargement autorisé de\n"
 "{} h à {} h"
@@ -32,27 +32,31 @@ msgstr ""
 "Téléchargement autorisé de\n"
 "{} h à {} h"
 
-#: main.py:56
+#: dl_queue.py:74
+msgid "Vider"
+msgstr "Vider"
+
+#: main.py:57
 msgid "pYdl"
 msgstr "pYdl"
 
-#: main.py:63
+#: main.py:64
 msgid "URL"
 msgstr "URL"
 
-#: main.py:73
+#: main.py:74
 msgid "Liste de Lecture"
 msgstr "Liste de lecture"
 
-#: main.py:82
+#: main.py:83
 msgid "Capturer Audio"
 msgstr "Capturer Audio"
 
-#: main.py:91
+#: main.py:92
 msgid "Capturer Vidéo"
 msgstr "Capturer Vidéo"
 
-#: main.py:100
+#: main.py:101
 msgid "C'est parti !"
 msgstr "C'est parti !"
 
