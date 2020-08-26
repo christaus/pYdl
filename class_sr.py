@@ -26,6 +26,7 @@ import codecs
 from pathlib import Path
 import configparser
 from structures import Tdl
+import datetime
 
 
 class SR:
@@ -103,8 +104,8 @@ class SR:
             section = el
             el_temp = Tdl()
             el_temp.URL = config[f"{el}"]["url"]
-            el_temp.date_cre = config[f"{el}"]["date_cre"]
-            el_temp.date_exp = config[f"{el}"]["date_exp"]
+            el_temp.date_cre = datetime.datetime.strptime(config[f"{el}"]["date_cre"], "%Y-%m-%d %H:%M:%S.%f")
+            el_temp.date_exp = datetime.datetime.strptime(config[f"{el}"]["date_exp"], "%Y-%m-%d %H:%M:%S.%f")
             el_temp.is_active = self.char2bool(config[f"{el}"]["is_active"])
             el_temp.is_audio = self.char2bool(config[f"{el}"]["is_audio"])
             el_temp.is_playlist = self.char2bool(config[f"{el}"]["is_playlist"])
