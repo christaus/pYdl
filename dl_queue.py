@@ -163,14 +163,14 @@ class dl_queue(Toplevel):
                     thread_001.start()
                     self.refresh_list()
                     self.update()
-                    
+
                     # On supprime le téléchargement actif de la liste
                     for el in self.Tdl_list:
                         if el.is_active:
                             self.Tdl_list.remove(el)
                     sauvegarde = SR(local_queue=self.Tdl_list)
                     self.Tdl_list = sauvegarde.save()
-                    
+
                     # On attends la fin du téléchargement
                     thread_001.join()
                     break
