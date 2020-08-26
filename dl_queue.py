@@ -68,15 +68,20 @@ class dl_queue(Toplevel):
 
         self.top_time = image_set(self.panel_001, f"images{os.sep}horloge")
         self.time_message = Label(
-            self.panel_001, text=_("Téléchargement autorisé de\n{} h à {} h").format(h_dep, h_fin), bg=couleur_fond, fg=couleur_texte
+            self.panel_001,
+            text=_("Téléchargement autorisé de\n{} h à {} h").format(h_dep, h_fin),
+            bg=couleur_fond,
+            fg=couleur_texte,
         )
-        self.btn_clear = Button(self.panel_003,
-                                  text=_("Vider"),
-                                  command = self.apply_clear,
-                                  bg=couleur_fond_saisie,
-                                  fg=couleur_texte_saisie,
-                                  activebackground=couleur_texte_saisie,
-                                  activeforeground=couleur_fond_saisie)
+        self.btn_clear = Button(
+            self.panel_003,
+            text=_("Vider"),
+            command=self.apply_clear,
+            bg=couleur_fond_saisie,
+            fg=couleur_texte_saisie,
+            activebackground=couleur_texte_saisie,
+            activeforeground=couleur_fond_saisie,
+        )
 
         """ Implantation des composants
         """
@@ -87,20 +92,20 @@ class dl_queue(Toplevel):
         self.vsb.pack(side="right", fill="y")
 
         self.time_message.pack(expand=True, fill=BOTH)
-        self.btn_clear.pack(expand = True, fill=BOTH)
+        self.btn_clear.pack(expand=True, fill=BOTH)
 
         """ Binding
         """
 
         self.panel_002.bind("<Configure>", self.onFrameConfigure)
         self.top_time.btn.bind("<Button-1>", self.do_Setup)
-        
+
     def apply_clear(self):
         del self.Tdl_list[:]
-        sauvegarde = SR(local_queue = self.Tdl_list)
+        sauvegarde = SR(local_queue=self.Tdl_list)
         sauvegarde.save()
         self.refresh_list()
-    
+
     def do_Setup(self, event):
         app = Setup_GUI()
         app.run()
@@ -115,14 +120,14 @@ class dl_queue(Toplevel):
 
     def add_tdl(self, download):
         self.Tdl_list.append(download)
-        sauvegarde = SR(local_queue = self.Tdl_list)
+        sauvegarde = SR(local_queue=self.Tdl_list)
         self.Tdl_list = sauvegarde.save()
         self.refresh_list()
 
     def refresh_list(self):
-        sauvegarde = SR(local_queue = self.Tdl_list)
+        sauvegarde = SR(local_queue=self.Tdl_list)
         self.Tdl_list = sauvegarde.restaure()
-        
+
         for enfant in self.frame.winfo_children():
             enfant.destroy()
         cursor = 0
@@ -131,7 +136,7 @@ class dl_queue(Toplevel):
             selection.run()
             selection.grid(row=cursor, column=0)
             cursor += 1
-            
+
         sauvegarde.save()
 
     def check_queue(self):
@@ -142,6 +147,7 @@ class dl_queue(Toplevel):
 
             # Suppression des téléchargement obsolètes
             for download in self.Tdl_list:
+
                 if (download.date_exp - datetime.datetime.now()).total_seconds() < 0:
                     # Download time expired or download done
                     self.Tdl_list.remove(download)
@@ -150,15 +156,25 @@ class dl_queue(Toplevel):
             for download in self.Tdl_list:
                 if (download.date_cre - datetime.datetime.now()).total_seconds() < 0:
                     download.is_active = True
-                    #thread_001 = letsdl_fake(download)
+                    sauvegarde = SR(local_queue=self.Tdl_list)
+                    self.Tdl_list = sauvegarde.save()
+                    # thread_001 = letsdl_fake(download)
                     thread_001 = letsdl(download)
                     thread_001.start()
-                    thread_001.join()
-                    self.Tdl_list.remove(download)
-                    sauvegarde = SR(local_queue = self.Tdl_list)
-                    self.Tdl_list = sauvegarde.save()
                     self.refresh_list()
                     self.update()
+                    
+                    # On supprime le téléchargement actif de la liste
+                    for el in self.Tdl_list:
+                        if el.is_active:
+                            self.Tdl_list.remove(el)
+                    sauvegarde = SR(local_queue=self.Tdl_list)
+                    self.Tdl_list = sauvegarde.save()
+                    
+                    # On attends la fin du téléchargement
+                    thread_001.join()
+                    break
+        self.after(self.interval, self.check_queue)
 
 
 class letsdl_fake(Thread):
@@ -167,7 +183,7 @@ class letsdl_fake(Thread):
         self.download = download
 
     def run(self):
-        time.sleep(10)
+        time.sleep(1)
         print(f"{self.download.URL} est maintenant téléchargé")
 
 
@@ -183,11 +199,13 @@ class letsdl(Thread):
             try:
                 if self.download.is_playlist:
                     subprocess.call(
-                    f"{path_youtubedl} -q -x --audio-format mp3 {self.download.URL} -o '{path_mp3}%(playlist_index)s - %(title)s.%(ext)s'", shell=True
+                        f"{path_youtubedl} -q -x --audio-format mp3 {self.download.URL} -o '{path_mp3}%(playlist_index)s - %(title)s.%(ext)s'",
+                        shell=True,
                     )
                 else:
                     subprocess.call(
-                    f"{path_youtubedl} -q -x --audio-format mp3 {self.download.URL} -o '{path_mp3}%(title)s.%(ext)s'", shell=True
+                        f"{path_youtubedl} -q -x --audio-format mp3 {self.download.URL} -o '{path_mp3}%(title)s.%(ext)s'",
+                        shell=True,
                     )
             except:
                 pass
@@ -195,7 +213,10 @@ class letsdl(Thread):
         if self.download.is_video:
             try:
                 if self.download.is_playlist:
-                    subprocess.call(f"{path_youtubedl} -q {self.download.URL} -o '{path_videos}%(playlist_index)s - %(title)s.%(ext)s'", shell=True)
+                    subprocess.call(
+                        f"{path_youtubedl} -q {self.download.URL} -o '{path_videos}%(playlist_index)s - %(title)s.%(ext)s'",
+                        shell=True,
+                    )
                 else:
                     subprocess.call(f"{path_youtubedl} -q {self.download.URL} -o '{path_videos}%(title)s.%(ext)s'", shell=True)
             except:
