@@ -150,13 +150,15 @@ class dl_queue(Toplevel):
             for download in self.Tdl_list:
                 if (download.date_cre - datetime.datetime.now()).total_seconds() < 0:
                     download.is_active = True
-                    self.refresh_list()
-                    self.update()
-                    #thread_001 = letsdl(download)
+                    #thread_001 = letsdl_fake(download)
                     thread_001 = letsdl(download)
                     thread_001.start()
                     thread_001.join()
                     self.Tdl_list.remove(download)
+                    sauvegarde = SR(local_queue = self.Tdl_list)
+                    self.Tdl_list = sauvegarde.save()
+                    self.refresh_list()
+                    self.update()
 
 
 class letsdl_fake(Thread):
